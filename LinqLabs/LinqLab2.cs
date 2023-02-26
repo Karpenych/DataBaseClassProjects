@@ -58,5 +58,73 @@ namespace LinqLabs
         }
 
 
+        struct Anketa
+        {
+            public string fio { get; set; }
+            public string city { get; set; }
+            public string birthday { get; set; }
+        }        
+
+        public static void StartLab2_Except_Intersect_Union()
+        {
+            Anketa[] anketas1 =
+            {
+                new Anketa() { fio = "Иванов И.И.", city = "Владивосток", birthday = "2002.06.14" },
+                new Anketa() { fio = "Краснов К.К.", city = "Уссурмйск", birthday = "1999.11.20" },
+                new Anketa() { fio = "Зайцев З.З.", city = "Артём", birthday = "2012.03.06" },
+                new Anketa() { fio = "Абобов А.А.", city = "Владивосток", birthday = "2000.04.01" },
+                new Anketa() { fio = "Кеков К.К.", city = "Уссурийск", birthday = "1999.07.15" },
+            };
+
+            Anketa[] anketas2 =
+            {
+                new Anketa() { fio = "Иванов И.И.", city = "Владивосток", birthday = "2002.06.14" },
+                new Anketa() { fio = "Краснов К.К.", city = "Уссурмйск", birthday = "1999.11.20" },
+                new Anketa() { fio = "Амуров А.А.", city = "Артём", birthday = "2012.03.06" },
+                new Anketa() { fio = "Абобов А.А.", city = "Владивосток", birthday = "2000.04.01" },
+                new Anketa() { fio = "Лолов Л.Л.", city = "Уссурийск", birthday = "1999.07.15" },
+            };
+
+            Console.ForegroundColor= ConsoleColor.Yellow;
+            Console.WriteLine("Except");
+
+            var queryExcept = anketas1.Except(anketas2); // Except1
+
+            Console.ForegroundColor = ConsoleColor.Blue;  
+            Console.WriteLine("  anketas1 - anketas2:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach ( Anketa a in queryExcept ) 
+                Console.WriteLine("    {0}  -  {1}  -  {2}", a.fio, a.city, a.birthday);
+
+            queryExcept = anketas2.Except(anketas1); // Except2
+
+            Console.ForegroundColor = ConsoleColor.Blue; 
+            Console.WriteLine("  anketas2 - anketas1:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (Anketa a in queryExcept)
+                Console.WriteLine("    {0}  -  {1}  -  {2}", a.fio, a.city, a.birthday);
+            Console.WriteLine('\n');
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Intersect");
+
+            var queryIntersect = anketas1.Intersect(anketas2); // Intersect
+
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (Anketa a in queryIntersect)
+                Console.WriteLine("  {0}  -  {1}  -  {2}", a.fio, a.city, a.birthday);
+            Console.WriteLine('\n');
+
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Union");
+
+            var queryUnion = anketas1.Union(anketas2); // Union
+
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (Anketa a in queryUnion)
+                Console.WriteLine("  {0}  -  {1}  -  {2}", a.fio, a.city, a.birthday);
+            Console.WriteLine('\n');
+        }
     }
 }

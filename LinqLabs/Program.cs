@@ -17,6 +17,11 @@ namespace LinqLabs
             //-----------------------------LinqLab2--------------------------------//
 
             //LinqLab2.StartLab2_Frequency_Text_Analysis("../../../../materials/lab1_digits.txt");
+            //LinqLab2.StartLab2_Except_Intersect_Union();
+
+            //-----------------------------LinqLab3--------------------------------//
+
+
         }
     }
 }
