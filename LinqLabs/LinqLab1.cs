@@ -9,11 +9,9 @@ namespace LinqLabs
 {
     internal class LinqLab1
     {
-        public static void StartLab1_words()
+        public static void StartLab1_words(string filePath)
         {
             List<string> allWords = new(50);
-
-            string filePath = "../../../../materials/lab1_words.txt";
 
             using (StreamReader sr = new(File.OpenRead(filePath)))
             {
@@ -33,16 +31,16 @@ namespace LinqLabs
                 }
             }
 
-            var query = allWords.Distinct().OrderBy(word => word).GroupBy(word => word.Length).OrderBy(group => group.First().Length).Select(group => group);
+            var query = allWords.Distinct().OrderBy(word => word).GroupBy(word => word.Length).OrderBy(group => group.Key).Select(group => group);
 
-            foreach (var g in query)
+            foreach (var group in query)
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.Write($"Length = {g.First().Length:d2} N = {g.LongCount():d2} - ");
+                Console.Write($"Length = {group.Key:d2} N = {group.LongCount():d2} - ");
 
                 Console.ForegroundColor = ConsoleColor.White;
-                foreach (var e in g) 
-                    Console.Write($"{e}  ");
+                foreach (var element in group) 
+                    Console.Write($"{element}  ");
 
                 Console.WriteLine("\n");
             }
@@ -50,11 +48,9 @@ namespace LinqLabs
             Console.WriteLine();
         }
 
-        public static void StartLab1_digits()
+        public static void StartLab1_digits(string filePath)
         {
             List<string> digits = new(50);
-
-            string filePath = "../../../../materials/lab1_digits.txt";
 
             using (StreamReader sr = new(File.OpenRead(filePath)))
             {

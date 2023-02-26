@@ -11,12 +11,12 @@ namespace LinqLabs
         {
             //-----------------------------LinqLab1--------------------------------//
 
-            //LinqLab1.StartLab1_words();
-            //LinqLab1.StartLab1_digits();
+            //LinqLab1.StartLab1_words("../../../../materials/lab1_words.txt");
+            //LinqLab1.StartLab1_digits("../../../../materials/lab1_digits.txt");
 
-            //-----------------------------LinqLab1--------------------------------//
+            //-----------------------------LinqLab2--------------------------------//
 
-
+            //LinqLab2.StartLab2_Frequency_Text_Analysis("../../../../materials/lab1_digits.txt");
         }
     }
 }
