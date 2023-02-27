@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<books>
+    <fantasy>    <!--################__FANTASSTY__####################### -->
+        <book author="Tolkien">
+            <name>hobbit</name>
+            <price>15</price>
+        </book>
+    </fantasy>
+    <detective>    <!--################__DETECTIVE__####################### -->
+        <book author="Doile">
+            <name>Holms</name>
+            <price>20</price>
+        </book>
+        <book author="Kristy">
+            <name>Puaro</name>
+            <price>25</price>
+        </book>
+        <book author="Doile">
+            <name>The Valley of Fear</name>
+            <price>30</price>
+        </book>
+    </detective>
+    <comedy>    <!--################__COMEDY__####################### -->
+        <book author="Sedaris">
+            <name>Me Talk Pretty One Day</name>
+            <price>10</price>
+        </book>
+        <book author="Adams">
+            <name>Hitchhiker’s Guide to the Galaxy</name>
+            <price>20</price>
+        </book>
+    </comedy>
+</books>

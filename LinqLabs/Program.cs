@@ -21,7 +21,7 @@ namespace LinqLabs
 
             //-----------------------------LinqLab3--------------------------------//
 
-
+            LinqLab3.StartLab3("../../../../materials/xml_file.xml");
         }
     }
 }
