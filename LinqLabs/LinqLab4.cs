@@ -37,7 +37,7 @@ namespace LinqLabs
             }
         }
 
-        public static void ReadTable(string table_name)
+        public static void ReadDBTable(string table_name)
         {
             OleDbCommand cmd = new()
             {
@@ -82,7 +82,7 @@ namespace LinqLabs
             
         }
 
-        public static void CreateTables()
+        public static void CreateDataSetTables()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Создание DataSet\n");
@@ -90,6 +90,11 @@ namespace LinqLabs
 
             DataTable dtAuthor = new();
             DataColumn pr_keyAuthor = dtAuthor.Columns.Add("ID", typeof(int));
+            pr_keyAuthor.Unique = true;			  
+            pr_keyAuthor.AllowDBNull = false; 	  
+            pr_keyAuthor.AutoIncrement = true; 	  
+            pr_keyAuthor.AutoIncrementSeed = 1; 	  
+            pr_keyAuthor.AutoIncrementStep = 1;
             dtAuthor.Columns.Add("AuthorName", typeof(string));
             dtAuthor.PrimaryKey = new DataColumn[] { pr_keyAuthor };
             myDS.Tables.Add(dtAuthor);
@@ -98,6 +103,11 @@ namespace LinqLabs
 
             DataTable dtGenre = new();
             DataColumn pr_keyGenre = dtGenre.Columns.Add("ID", typeof(int));
+            pr_keyGenre.Unique = true;
+            pr_keyGenre.AllowDBNull = false;
+            pr_keyGenre.AutoIncrement = true;
+            pr_keyGenre.AutoIncrementSeed = 1;
+            pr_keyGenre.AutoIncrementStep = 1;
             dtGenre.Columns.Add("Genre", typeof(string));
             dtGenre.PrimaryKey = new DataColumn[] { pr_keyGenre };
             myDS.Tables.Add(dtGenre);
@@ -106,6 +116,11 @@ namespace LinqLabs
 
             DataTable dtBook = new();
             DataColumn pr_keyBook = dtBook.Columns.Add("ID", typeof(int));
+            pr_keyBook.Unique = true;
+            pr_keyBook.AllowDBNull = false;
+            pr_keyBook.AutoIncrement = true;
+            pr_keyBook.AutoIncrementSeed = 1;
+            pr_keyBook.AutoIncrementStep = 1;
             dtBook.Columns.Add("Title", typeof(string));
             dtBook.Columns.Add("id_gen", typeof(int));
             dtBook.Columns.Add("id_auth", typeof(int));
@@ -142,7 +157,7 @@ namespace LinqLabs
             Console.WriteLine();
         }
 
-        public static void FillTables()
+        public static void FillDataSetTables()
         {
             OleDbCommand cmd = new()
             {
@@ -252,17 +267,16 @@ namespace LinqLabs
         }
 
 
-
         public static void StartLab4(string filePath)
         {
             OpenDbAccess(filePath);
 
-            ReadTable("Book");
-            ReadTable("Author");
-            ReadTable("Genre");
+            ReadDBTable("Book");
+            ReadDBTable("Author");
+            ReadDBTable("Genre");
 
-            CreateTables();
-            FillTables();
+            CreateDataSetTables();
+            FillDataSetTables();
 
             SelectRowsFromDataSet("Author");
 

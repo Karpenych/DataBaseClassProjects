@@ -9,9 +9,6 @@ namespace LinqLabs
 {
     internal class LinqLab3
     {
-        
-
-
         public static void StartLab3(string filePath)
         {
             XDocument doc = XDocument.Load(filePath);
