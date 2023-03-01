@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Author>
+    <ID>2</ID>
+    <AuthorName>Кристи</AuthorName>
+    <Book>
+      <ID>7</ID>
+      <Title>Убийство в восточном экспрессе</Title>
+      <id_gen>2</id_gen>
+      <id_auth>2</id_auth>
+    </Book>
+    <Book>
+      <ID>8</ID>
+      <Title>Убийство на  Ниле</Title>
+      <id_gen>2</id_gen>
+      <id_auth>2</id_auth>
+    </Book>
+    <Book>
+      <ID>9</ID>
+      <Title>В 4.50 из Паддингтона</Title>
+      <id_gen>2</id_gen>
+      <id_auth>2</id_auth>
+    </Book>
+  </Author>
+  <Genre>
+    <ID>2</ID>
+    <Genre>Детектив</Genre>
+  </Genre>
+</NewDataSet>

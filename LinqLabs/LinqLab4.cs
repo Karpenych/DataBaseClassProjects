@@ -15,11 +15,14 @@ namespace LinqLabs
         static OleDbConnection? con = null;
         static DataSet myDS = new();
 
+        public static OleDbConnection Connection { get { return con; } }
+        public static DataSet MyDS { get { return myDS; } }
 
-        public static void OpenDbAccess(string filePath)
+
+        public static void OpenDbAccess(string dbFilePath)
         {
             string? conString = "Provider=Microsoft.ACE.OLEDB.12.0;"
-                               + $"Data Source={filePath};"
+                               + $"Data Source={dbFilePath};"
                                + "Persist Security Info=True;";
             con = new OleDbConnection(conString);
             try
@@ -138,7 +141,6 @@ namespace LinqLabs
             DataColumn parentCol_G = myDS.Tables["Genre"].Columns["ID"];
             DataColumn childCol_G = myDS.Tables["Book"].Columns["id_gen"];
             myDS.Relations.Add(new System.Data.DataRelation("Gen_Book", parentCol_G, childCol_G));
-            myDS.Relations[1].Nested = true;
 
             Console.WriteLine("Связи:");
             for (int i = 0; i < 2; i++)
@@ -267,9 +269,9 @@ namespace LinqLabs
         }
 
 
-        public static void StartLab4(string filePath)
+        public static void StartLab4(string dbFilePath)
         {
-            OpenDbAccess(filePath);
+            OpenDbAccess(dbFilePath);
 
             ReadDBTable("Book");
             ReadDBTable("Author");

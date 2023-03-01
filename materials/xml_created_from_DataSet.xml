@@ -1,0 +1,109 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Author">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="AuthorName" type="xs:string" minOccurs="0" />
+                <xs:element name="Book" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                      <xs:element name="Title" type="xs:string" minOccurs="0" />
+                      <xs:element name="id_gen" type="xs:int" minOccurs="0" />
+                      <xs:element name="id_auth" type="xs:int" minOccurs="0" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Genre">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="Genre" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Book_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Book" />
+        <xs:field xpath="ID" />
+      </xs:unique>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Author" />
+        <xs:field xpath="ID" />
+      </xs:unique>
+      <xs:unique name="Genre_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Genre" />
+        <xs:field xpath="ID" />
+      </xs:unique>
+      <xs:keyref name="Gen_Book" refer="Genre_Constraint1">
+        <xs:selector xpath=".//Book" />
+        <xs:field xpath="id_gen" />
+      </xs:keyref>
+      <xs:keyref name="Auth_Book" refer="Constraint1" msdata:IsNested="true">
+        <xs:selector xpath=".//Book" />
+        <xs:field xpath="id_auth" />
+      </xs:keyref>
+    </xs:element>
+  </xs:schema>
+  <Author>
+    <ID>1</ID>
+    <AuthorName>Дойл</AuthorName>
+    <Book>
+      <ID>4</ID>
+      <Title>Шерлок</Title>
+      <id_gen>2</id_gen>
+      <id_auth>1</id_auth>
+    </Book>
+  </Author>
+  <Author>
+    <ID>2</ID>
+    <AuthorName>Кристи</AuthorName>
+    <Book>
+      <ID>5</ID>
+      <Title>Пуаро</Title>
+      <id_gen>2</id_gen>
+      <id_auth>2</id_auth>
+    </Book>
+  </Author>
+  <Author>
+    <ID>3</ID>
+    <AuthorName>Кинг</AuthorName>
+    <Book>
+      <ID>6</ID>
+      <Title>Кладбище домашних животных</Title>
+      <id_gen>1</id_gen>
+      <id_auth>3</id_auth>
+    </Book>
+  </Author>
+  <Author>
+    <ID>4</ID>
+    <AuthorName>Толкин</AuthorName>
+    <Book>
+      <ID>3</ID>
+      <Title>Хоббит</Title>
+      <id_gen>3</id_gen>
+      <id_auth>4</id_auth>
+    </Book>
+  </Author>
+  <Genre>
+    <ID>1</ID>
+    <Genre>Хоррор</Genre>
+  </Genre>
+  <Genre>
+    <ID>2</ID>
+    <Genre>Детектив</Genre>
+  </Genre>
+  <Genre>
+    <ID>3</ID>
+    <Genre>Фэнтези</Genre>
+  </Genre>
+</NewDataSet>
