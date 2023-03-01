@@ -104,10 +104,136 @@ namespace LinqLabs
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void StartLab5_CreateXMLfromDataSet_Only_Changes_2(string dbFilePath)
+        public static void StartLab5_CreateXMLfromDataSet_Only_Changes_2(string xmlShortSchemePath, string xmlMainPath)
         {
+            DataSet DS_1 = new();
+            DS_1.ReadXmlSchema(xmlShortSchemePath);
+#pragma warning disable CS0618
+            XmlDataDocument xmlDoc = new(DS_1);
+            xmlDoc.Load(xmlMainPath);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("DataSet связи:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (DataRelation r in DS_1.Relations) 	
+                Console.WriteLine(r.RelationName);
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("DataSet отношения:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (DataTable t in DS_1.Tables)			
+                Console.WriteLine(t.TableName);
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("DataSet атрибуты Book:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (DataColumn c in DS_1.Tables["Book"].Columns)      
+                Console.WriteLine("{0}", c.ColumnName);
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("DataSet кортежи Book:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (DataRow r in DS_1.Tables["Book"].Rows)	 
+                Console.WriteLine("{0,-2}. {1} ", r.ItemArray[0], r.ItemArray[1]);
+            Console.WriteLine();
+
+            DS_1.EnforceConstraints = false;
+            DS_1.AcceptChanges();
+
+            string[] titles = new string[] 
+            {
+                "Оно", "Зелёная миля", "Сияние",
+                "Гордость и предубеждения", "Разум и чувства", "Доводы рассудка"
+            };
+
+            DataRow newRow = DS_1.Tables["Author"].NewRow();
+            newRow["AuthorName"] = "Остен";
+            DS_1.Tables["Author"].Rows.Add(newRow);
+
+            int id_aut = -1;
+            foreach (DataRow r in DS_1.Tables["Author"].Rows)
+            {
+                if (r["AuthorName"].ToString() == "Остен") 
+                { 
+                    id_aut = (int)r["ID"]; 
+                    break; 
+                }
+            }
+
+            for (byte i = 0; i < titles.Length; ++i)
+            {
+                DataRow newRow_ = DS_1.Tables["Book"].NewRow();
+                newRow_["Title"] = titles[i];
+                if (i < 3) 
+                    newRow_["id_auth"] = 3; 
+                else 
+                    newRow_["id_auth"] = id_aut;
+
+                DS_1.Tables["Book"].Rows.Add(newRow_);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("кортежи Book:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (DataRow r in DS_1.Tables["Book"].Rows)
+            {
+                string st = r.RowState.ToString();
+                if (st != "Deleted")
+                    Console.WriteLine("{0,-2}. {1,-35} {2,-2} ({3})", r["ID"], r["Title"], r["id_auth"], st);
+            }
+
+            if (DS_1.HasChanges())
+            {
+                DataSet Changes = DS_1.GetChanges();
+                Changes.WriteXml("../../../../materials/xml_only_changes_2.xml");                
+            }
+            else 
+                Console.WriteLine("Изменения не обнаружены");
+
+            Console.WriteLine();
         }
 
+        public static void CreateNewXMLScheme(string xmlToChangePath)
+        {
+#pragma warning disable CS0618
+            XmlDataDocument xmlDoc = new();
+            xmlDoc.Load(xmlToChangePath);
+            string str = xmlDoc.InnerXml;    				   
+            string pattern = "<xs:schema.+xs:schema>";
+            string STR = System.Text.RegularExpressions.Regex.Matches(str, pattern).ElementAt(0).ToString();
+            Console.WriteLine(STR);                      
+
+            pattern = "<xs:element name=\"Genre\">.+?xs:element>";
+            var STR1 = System.Text.RegularExpressions.Regex.Matches(STR.ToString(), pattern).First();
+            Console.WriteLine("\n{0}  ", STR1);          
+
+            pattern = "<xs:unique name=\"Genre.+?xs:unique>";
+            var STR2 = System.Text.RegularExpressions.Regex.Matches(STR.ToString(), pattern).First();
+            Console.WriteLine("\n{0}  ", STR2);
+
+            pattern = "<xs:keyref name=\"Gen_Book\".+?xs:keyref>";
+            var STR3 = System.Text.RegularExpressions.Regex.Matches(STR.ToString(), pattern).First();
+            Console.WriteLine("\n{0}  ", STR3);             
+
+            pattern = "<xs:element name=\"id_gen\".+?>";
+            var STR4 = System.Text.RegularExpressions.Regex.Matches(STR.ToString(), pattern).First();
+            Console.WriteLine("\n{0}  ", STR4);                 
+
+            str = STR.Replace(STR1.ToString(), "")      
+                     .Replace(STR2.ToString(), "")
+                     .Replace(STR3.ToString(), "")
+                     .Replace(STR4.ToString(), "")
+                     .Replace("<".ToString(), "\n<");
+
+            str = "<?xml version =\"1.0\" encoding=\"utf-8\" ?>" + str;
+            Console.WriteLine("\n{0}  ", str);
+
+            StreamWriter sw = new ("../../../../materials/mySchema.xml");
+            sw.WriteLine(str);						
+            sw.Close();
+        }
     }
 }

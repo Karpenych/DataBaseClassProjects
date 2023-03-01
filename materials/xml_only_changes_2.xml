@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Author>
+    <ID>3</ID>
+    <AuthorName>Кинг</AuthorName>
+    <Book>
+      <ID>7</ID>
+      <Title>Оно</Title>
+      <id_auth>3</id_auth>
+    </Book>
+    <Book>
+      <ID>8</ID>
+      <Title>Зелёная миля</Title>
+      <id_auth>3</id_auth>
+    </Book>
+    <Book>
+      <ID>9</ID>
+      <Title>Сияние</Title>
+      <id_auth>3</id_auth>
+    </Book>
+  </Author>
+  <Author>
+    <ID>5</ID>
+    <AuthorName>Остен</AuthorName>
+    <Book>
+      <ID>10</ID>
+      <Title>Гордость и предубеждения</Title>
+      <id_auth>5</id_auth>
+    </Book>
+    <Book>
+      <ID>11</ID>
+      <Title>Разум и чувства</Title>
+      <id_auth>5</id_auth>
+    </Book>
+    <Book>
+      <ID>12</ID>
+      <Title>Доводы рассудка</Title>
+      <id_auth>5</id_auth>
+    </Book>
+  </Author>
+</NewDataSet>

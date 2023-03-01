@@ -1,0 +1,38 @@
+<?xml version ="1.0" encoding="utf-8" ?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+<xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False">
+<xs:complexType>
+<xs:choice minOccurs="0" maxOccurs="unbounded">
+<xs:element name="Author">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+<xs:element name="AuthorName" type="xs:string" minOccurs="0" />
+<xs:element name="Book" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+<xs:element name="Title" type="xs:string" minOccurs="0" />
+<xs:element name="id_auth" type="xs:int" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:choice>
+</xs:complexType>
+<xs:unique name="Book_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+<xs:selector xpath=".//Book" />
+<xs:field xpath="ID" />
+</xs:unique>
+<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+<xs:selector xpath=".//Author" />
+<xs:field xpath="ID" />
+</xs:unique>
+<xs:keyref name="Auth_Book" refer="Constraint1" msdata:IsNested="true">
+<xs:selector xpath=".//Book" />
+<xs:field xpath="id_auth" />
+</xs:keyref>
+</xs:element>
+</xs:schema>
