@@ -29,7 +29,7 @@ namespace LinqLabs
             {
                 con.Open(); 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("База данных подключена. Текущий статус: ");
+                Console.Write("База данных Access подключена. Текущий статус: ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("{0}\n", con.State.ToString());
                 Console.ForegroundColor = ConsoleColor.White;
@@ -38,6 +38,16 @@ namespace LinqLabs
             {
                 Console.WriteLine(e.Message); return;
             }
+        }
+
+        public static void CloseDbAccess()
+        {
+            con.Close();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("База данных Access отключена. Текущий статус: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("{0}\n", con.State.ToString());
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public static void ReadDBTable(string table_name)

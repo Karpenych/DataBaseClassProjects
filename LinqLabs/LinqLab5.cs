@@ -30,12 +30,7 @@ namespace LinqLabs
             string file = $"../../../../materials/xml_created_from_DataSet.xml";
             LinqLab4.MyDS.WriteXml(file, System.Data.XmlWriteMode.WriteSchema);
 
-            LinqLab4.Connection.Close();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write("База данных отключена. Текущий статус: ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("{0}\n", LinqLab4.Connection.State.ToString());
-            Console.ForegroundColor = ConsoleColor.White;
+            LinqLab4.CloseDbAccess();
         }
 
         public static void StartLab5_CreateXMLfromDataSet_Only_Changes(string dbFilePath)
@@ -96,12 +91,7 @@ namespace LinqLabs
                 Console.WriteLine("\nИзменения не обнаружены");
 
             Console.WriteLine();
-            LinqLab4.Connection.Close();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write("База данных отключена. Текущий статус: ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("{0}\n", LinqLab4.Connection.State.ToString());
-            Console.ForegroundColor = ConsoleColor.White;
+            LinqLab4.CloseDbAccess();
         }
 
         public static void StartLab5_CreateXMLfromDataSet_Only_Changes_2(string xmlShortSchemePath, string xmlMainPath)

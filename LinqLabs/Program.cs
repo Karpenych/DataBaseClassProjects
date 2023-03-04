@@ -30,12 +30,20 @@ namespace LinqLabs
 
             //LinqLab4.StartLab4("../../../../materials/dbLinqLab4.accdb");
 
-
+             
             //-----------------------------LinqLab5--------------------------------//
 
             //LinqLab5.StartLab5_CreateXMLfromDataSet("../../../../materials/dbLinqLab4.accdb");
-            //LinqLab5.StartLab5_CreateXMLfromDataSet("../../../../materials/dbLinqLab4.accdb");
+            //LinqLab5.StartLab5_CreateXMLfromDataSet_Only_Changes("../../../../materials/dbLinqLab4.accdb");
             //LinqLab5.StartLab5_CreateXMLfromDataSet_Only_Changes_2("../../../../materials/mySchema.xml", "../../../../materials/xml_created_from_DataSet.xml");
+
+
+            //-----------------------------LinqLab6--------------------------------//
+
+            //LinqLab6.StartLab6("../../../../materials/dbLinqLab4.accdb");
+
+
+            
         }
     }
 }
