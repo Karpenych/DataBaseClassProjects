@@ -22,7 +22,7 @@ namespace LinqLabs
         public static SqlConnection? sqlCon = null;
 
 
-        static void ConnectToSQLDB()
+        public static void ConnectToSQLDB()
         {
             sqlCon = new SqlConnection(strCon);
             sqlCon.Open();

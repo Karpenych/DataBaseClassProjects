@@ -30,7 +30,7 @@ namespace LinqLabs
 
             //LinqLab4.StartLab4("../../../../materials/dbLinqLab4.accdb");
 
-             
+
             //-----------------------------LinqLab5--------------------------------//
 
             //LinqLab5.StartLab5_CreateXMLfromDataSet("../../../../materials/dbLinqLab4.accdb");
@@ -43,7 +43,9 @@ namespace LinqLabs
             //LinqLab6.StartLab6("../../../../materials/dbLinqLab4.accdb");
 
 
-            
+            //-----------------------------LinqLab7--------------------------------//
+
+            //LinqLab7.StartLab7();
         }
     }
 }
